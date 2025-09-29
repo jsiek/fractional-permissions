@@ -28,6 +28,8 @@
 ;; e ::= (q intro) | x | (e e)                         expression
 ;;     | (split e (x y) e)
 ;;     | (dup e) | (join e e)
+;;     | (write e1 e2 (x) e3)      TODO: e1 produces an address, write value of e2 into the address, then
+;;                                 put the address in variable x, which can be used in e3.
 ;; v ::= k | (lambda (x) e) | (pair v v)               value
 ;; heap : dict[nat,value]
 ;; env  : dict[variable,addr]
@@ -384,4 +386,5 @@
 (with-handlers ([exn:fail? (lambda (exn) (void))])
                (run P10)
                (check-true #f))
+
 
